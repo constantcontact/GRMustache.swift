@@ -226,7 +226,7 @@ extension Int64 : MustacheBoxable {
     public var mustacheBox: MustacheBox {
         return MustacheBox(
             value: self,
-            boolValue: (self != 0),
+            boolValue: self,
             render: { (info: RenderingInfo) in
                 switch info.tag.type {
                 case .variable:
@@ -274,7 +274,7 @@ extension Int : MustacheBoxable {
     public var mustacheBox: MustacheBox {
         return MustacheBox(
             value: self,
-            boolValue: (self != 0),
+            boolValue: self,
             render: { (info: RenderingInfo) in
                 switch info.tag.type {
                 case .variable:
