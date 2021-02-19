@@ -233,19 +233,20 @@ extension Int64 : MustacheBoxable {
                     // {{ int }}
                     return Rendering("\(self)")
                 case .section:
-                    if info.enumerationItem {
-                        // {{# ints }}...{{/ ints }}
-                        return try info.tag.render(info.context.extendedContext(Box(self)))
-                    } else {
-                        // {{# int }}...{{/ int }}
-                        //
-                        // Ints do not enter the context stack when used in a
-                        // boolean section.
-                        //
-                        // This behavior must not change:
-                        // https://github.com/groue/GRMustache/issues/83
-                        return try info.tag.render(info.context)
-                    }
+                    return try info.tag.render(info.context.extendedContext(Box(self)))
+//                    if info.enumerationItem {
+//                        // {{# ints }}...{{/ ints }}
+//                        return try info.tag.render(info.context.extendedContext(Box(self)))
+//                    } else {
+//                        // {{# int }}...{{/ int }}
+//                        //
+//                        // Ints do not enter the context stack when used in a
+//                        // boolean section.
+//                        //
+//                        // This behavior must not change:
+//                        // https://github.com/groue/GRMustache/issues/83
+//                        return try info.tag.render(info.context)
+//                    }
                 }
         })
     }
@@ -280,19 +281,20 @@ extension Int : MustacheBoxable {
                     // {{ int }}
                     return Rendering("\(self)")
                 case .section:
-                    if info.enumerationItem {
-                        // {{# ints }}...{{/ ints }}
-                        return try info.tag.render(info.context.extendedContext(Box(self)))
-                    } else {
-                        // {{# int }}...{{/ int }}
-                        //
-                        // Ints do not enter the context stack when used in a
-                        // boolean section.
-                        //
-                        // This behavior must not change:
-                        // https://github.com/groue/GRMustache/issues/83
-                        return try info.tag.render(info.context)
-                    }
+                    return try info.tag.render(info.context.extendedContext(Box(self)))
+//                    if info.enumerationItem {
+//                        // {{# ints }}...{{/ ints }}
+//                        return try info.tag.render(info.context.extendedContext(Box(self)))
+//                    } else {
+//                        // {{# int }}...{{/ int }}
+//                        //
+//                        // Ints do not enter the context stack when used in a
+//                        // boolean section.
+//                        //
+//                        // This behavior must not change:
+//                        // https://github.com/groue/GRMustache/issues/83
+//                        return try info.tag.render(info.context)
+//                    }
                 }
         })
     }
