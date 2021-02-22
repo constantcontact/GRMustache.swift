@@ -186,20 +186,19 @@ extension Bool : MustacheBoxable {
                     // {{ bool }}
                     return Rendering("\(self ? 1 : 0)") // Behave like [NSNumber numberWithBool:]
                 case .section:
-                    return try info.tag.render(info.context.extendedContext(Box(self)))
-//                    if info.enumerationItem {
-//                        // {{# bools }}...{{/ bools }}
-//                        return try info.tag.render(info.context.extendedContext(Box(self)))
-//                    } else {
-//                        // {{# bool }}...{{/ bool }}
-//                        //
-//                        // Bools do not enter the context stack when used in a
-//                        // boolean section.
-//                        //
-//                        // This behavior must not change:
-//                        // https://github.com/groue/GRMustache/issues/83
-//                        return try info.tag.render(info.context)
-//                    }
+                    if info.enumerationItem {
+                        // {{# bools }}...{{/ bools }}
+                        return try info.tag.render(info.context.extendedContext(Box(self)))
+                    } else {
+                        // {{# bool }}...{{/ bool }}
+                        //
+                        // Bools do not enter the context stack when used in a
+                        // boolean section.
+                        //
+                        // This behavior must not change:
+                        // https://github.com/groue/GRMustache/issues/83
+                        return try info.tag.render(info.context)
+                    }
                 }
         })
     }
